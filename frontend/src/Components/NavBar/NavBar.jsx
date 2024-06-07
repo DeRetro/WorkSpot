@@ -8,9 +8,17 @@ import Lottie from "lottie-react";
 
 const NavBar=()=>{
   const [isMenuOpen,setIsMenuOpen]=useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleMenuToggler=()=>{
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const handleSignOut = ()=>{
+
+    //implement login logic here and pass bellow value 
+    setIsLoggedIn=(!isLoggedIn);
+  };
+
 
   const navItems = [
     {path:"/",title:"Start a search"},
@@ -49,17 +57,27 @@ const NavBar=()=>{
   </ul>
 
   {/*signup and login button*/}
+  
     <div className='text-lg text-Text font-medium space-x-5 hidden lg:block'>
-      <Link to="/login" className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-base font-semibold text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
-        <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-        Login
-        </span>
-      </Link>
-      <Link to="/sign-up" className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-base font-semibold text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
-        <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-        Sign Up
-        </span>
-      </Link>
+      {!isLoggedIn ? (
+        <>
+        <Link to="/login" className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-base font-semibold text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+          <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+          Login
+          </span>
+        </Link>
+        <Link to="/sign-up" className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-base font-semibold text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
+          <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+          Sign Up
+          </span>
+        </Link></>
+          ):(
+          // Setup Sign out button (me just changed button name implement properly)
+          <Link to="/sign-out" className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-base font-semibold text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
+          <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+          Sign Out
+          </span>
+        </Link>)}
     </div>
 
   {/*mobile menu for small devices*/}
